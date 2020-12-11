@@ -1,13 +1,13 @@
 variables:
-  resource_group_name : "ps-win10-00"
+  resource_group_name : "ps-win10-01"
   location : "Canada Central"
-  prefix : "ps-windev"
+  prefix : "ps-windev01"
   machine_name : "Win10"
   admin_username : "singh"
   admin_password : "SuperSecureP@ssWord"
   subnet_name : "windows-vm"
-  nsg_name : "windows-nsg"
-  vnet_name : "ps-devshared-vnet"
+  nsg_name : "windows-nsg01"
+  vnet_name : "ps-test-vnet"
   
 stages:
 - stage: validate
