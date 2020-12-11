@@ -1,3 +1,14 @@
+parameters:
+  resource_group_name : "ps-win10-00"
+  location : "Canada Central"
+  prefix : "ps-windev"
+  machine_name : "Win10"
+  admin_username : "singh"
+  admin_password : "SuperSecureP@ssWord"
+  subnet_name : "windows-vm"
+  nsg_name : "windows-nsg"
+  vnet_name : "ps-devshared-vnet"
+  
 stages:
 - stage: validate
   jobs:
