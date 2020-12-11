@@ -64,7 +64,7 @@ stages:
                   provider: 'azurerm'
                   command: 'plan'
                   environmentServiceNameAzureRM: 'VisualStudio-DevTest(6ba8e616-dc16-4569-90eb-05a53d7896b5)'
-                  commandOptions: -input=false -var "resource_group_name=$(resource_group_name)","location=$(location)","prefix=$(prefix)","machine_name=$(machine_name)","admin_username=$(admin_username)","admin_password=$(admin_password)","subnet_name=$(subnet_name)","nsg_name=$(nsg_name)","vnet_name=$(vnet_name)"
+                  commandOptions: -input=false -var resource_group_name="$(resource_group_name)" -var location="$(location)" -var prefix="$(prefix)" -var machine_name="$(machine_name)" -var admin_username="$(admin_username)" -var admin_password="$(admin_password)" -var subnet_name="$(subnet_name)" -var nsg_name="$(nsg_name)" -var vnet_name="$(vnet_name)"
               - task: TerraformTaskV1@0
                 displayName: apply
                 inputs:
