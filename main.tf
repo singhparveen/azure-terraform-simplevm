@@ -2,10 +2,6 @@ provider "azurerm" {
   features {}
 }
 
-resource "random_id" "storage_account" {
-  byte_length = 8
-}
-
 resource "azurerm_resource_group" "rg01" {
   location = var.location
   name     = "${var.resource_group_name}-RG"
@@ -24,7 +20,7 @@ module "subnet" {
 module "diagstorage" {
     source = "./modules/storage/storageaccount"
     
-    storageaccname        = "tfsta${lower(random_id.storage_account.hex)}"
+    storageaccname        = "tfstatemporarystorage"
     location              = azurerm_resource_group.rg01.location
     resource_group_name   = azurerm_resource_group.rg01.name
 }
