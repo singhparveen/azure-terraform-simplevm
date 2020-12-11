@@ -34,7 +34,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'validate'
-        commandOptions: -input=false -var "RESOURCE_GROUP_NAME=$(resource_group_name)","LOCATION=$(location)","PREFIX=$(prefix)","MACHINE_NAME=$(machine_name)","ADMIN_USERNAME=$(admin_username)","ADMIN_PASSWORD=$(admin_password)","SUBNET_NAME=$(subnet_name)","NSG_NAME=$(nsg_name)","VNET_NAME=$(vnet_name)"
 - stage: deploy
   jobs:
     - deployment: deploy_tf
