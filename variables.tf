@@ -1,9 +1,9 @@
-variable "RESOURCE_GROUP_NAME"{}
-variable "LOCATION" {}
-variable "PREFIX" {}
-variable "MACHINE_NAME" {}
-variable "ADMIN_USERNAME" {}
-variable "ADMIN_PASSWORD" {}
-variable "SUBNET_NAME" {}
-variable "NSG_NAME" {}
-variable "VNET_NAME" {}
+variable "resource_group_name"{}
+variable "location" {}
+variable "prefix" {}
+variable "machine_name" {}
+variable "admin_username" {}
+variable "admin_password" {}
+variable "subnet_name" {}
+variable "nsg_name" {}
+variable "vnet_name" {}
