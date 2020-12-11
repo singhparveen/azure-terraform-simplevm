@@ -1,0 +1,61 @@
+stages:
+- stage: validate
+  jobs:
+  - job: validate
+    continueOnError: false
+    steps:
+    - task: TerraformInstaller@0
+      displayName: 'terraform-install'
+      inputs:
+        terraformVersion: '0.12.3'
+    - task: TerraformTaskV1@0
+      displayName: init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'VisualStudio-DevTest(6ba8e616-dc16-4569-90eb-05a53d7896b5)'
+        backendAzureRmResourceGroupName: 'ps-devshared-rg'
+        backendAzureRmStorageAccountName: 'psdevsharedsa'
+        backendAzureRmContainerName: 'sktfcontainer'
+        backendAzureRmKey: 'terraform.tfstate'
+    - task: TerraformTaskV1@0
+      displayName: validate
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+- stage: deploy
+  jobs:
+    - deployment: deploy_tf
+      continueOnError: false
+      environment: dev
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              - checkout: self
+              - task: TerraformInstaller@0
+                displayName: 'terraform-install'
+                inputs:
+                  terraformVersion: '0.12.3'
+              - task: TerraformTaskV1@0
+                displayName: init
+                inputs:
+                  provider: 'azurerm'
+                  command: 'init'
+                  backendServiceArm: 'VisualStudio-DevTest(6ba8e616-dc16-4569-90eb-05a53d7896b5)'
+                  backendAzureRmResourceGroupName: 'ps-devshared-rg'
+                  backendAzureRmStorageAccountName: 'psdevsharedsa'
+                  backendAzureRmContainerName: 'sktfcontainer'
+                  backendAzureRmKey: 'terraform.tfstate'
+              - task: TerraformTaskV1@0
+                displayName: plan
+                inputs:
+                  provider: 'azurerm'
+                  command: 'plan'
+                  environmentServiceNameAzureRM: 'VisualStudio-DevTest(6ba8e616-dc16-4569-90eb-05a53d7896b5)'
+              - task: TerraformTaskV1@0
+                displayName: apply
+                inputs:
+                  provider: 'azurerm'
+                  command: 'apply'
+                  environmentServiceNameAzureRM: 'VisualStudio-DevTest(6ba8e616-dc16-4569-90eb-05a53d7896b5)'
