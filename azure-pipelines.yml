@@ -1,4 +1,4 @@
-parameters:
+variables:
   resource_group_name : "ps-win10-00"
   location : "Canada Central"
   prefix : "ps-windev"
