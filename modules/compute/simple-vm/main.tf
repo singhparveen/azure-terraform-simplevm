@@ -43,6 +43,6 @@ resource "azurerm_windows_virtual_machine" "simple-vm" {
     publisher = "MicrosoftWindowsDesktop"
     offer     = "windows-10"
     sku       = "20h1-pro"
-    version   = "19041.329.2006042019"
+    version   = "19041.685.2012032305"
   }
 }
